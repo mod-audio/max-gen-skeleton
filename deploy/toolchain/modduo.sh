@@ -53,7 +53,7 @@ function build_for_osx {
   cd ${BUILD_DIR}/${NAME}
 
   if [ ! -f .stamp_configured ]; then
-    ./configure --prefix=${SYSPREFIX_DIR} --enable-mini-gmp
+    ./configure --prefix=${SYSPREFIX_DIR}
     touch .stamp_configured
   fi
 
@@ -83,6 +83,10 @@ if [ -d /System/Library ]; then
   if [ ! -f ${SYSPREFIX_DIR}/bin/objdump ]; then
     build_for_osx http://ftp.gnu.org/gnu/binutils binutils-2.26.1 tar.bz2
     cp binutils/obj{dump,copy} binutils/readelf ${SYSPREFIX_DIR}/bin/
+  fi
+  if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then
+    build_for_osx http://ftp.gnu.org/gnu/gmp gmp-6.1.1 tar.xz
+    make install
   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/nettle-hash ]; then
     build_for_osx http://ftp.gnu.org/gnu/nettle nettle-3.3 tar.gz
