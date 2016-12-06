@@ -24,6 +24,7 @@ mkdir -p ${SYSPREFIX_DIR}/bin
 mkdir -p ${TOOLCHAIN_DIR}
 
 export PATH=${SYSPREFIX_DIR}/bin:$PATH
+export PKG_CONFIG_PATH=${SYSPREFIX_DIR}/lib/pkgconfig
 
 #######################################################################################################################
 # Misc functions
