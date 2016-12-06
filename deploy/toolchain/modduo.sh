@@ -83,6 +83,10 @@ if [ -d /System/Library ]; then
     build_for_osx http://ftp.gnu.org/gnu/binutils binutils-2.26.1 tar.bz2
     cp binutils/obj{dump,copy} binutils/readelf ${SYSPREFIX_DIR}/bin/
   fi
+  if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then
+    build_for_osx http://ftp.gnu.org/gnu/gnutls gnutls-3.1.5 tar.xz
+    make install
+  fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/wget ]; then
     build_for_osx http://ftp.gnu.org/gnu/wget wget-1.18 tar.xz
     make install
