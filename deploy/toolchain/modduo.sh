@@ -65,6 +65,10 @@ function build_for_osx {
 # Special Mac OS setup
 
 if [ -d /System/Library ]; then
+  export CFLAGS=-m64
+  export CXXFLAGS=-m64
+  export LDFLAGS=-m64
+
   if [ ! -f ${SYSPREFIX_DIR}/bin/sed ]; then
     build_for_osx http://ftp.gnu.org/gnu/sed sed-4.2.2 tar.bz2
     make install
@@ -85,18 +89,6 @@ if [ -d /System/Library ]; then
     build_for_osx http://ftp.gnu.org/gnu/binutils binutils-2.26.1 tar.bz2
     cp binutils/obj{dump,copy} binutils/readelf ${SYSPREFIX_DIR}/bin/
   fi
-#   if [ ! -f ${SYSPREFIX_DIR}/include/gmp.h ]; then
-#     build_for_osx http://ftp.gnu.org/gnu/gmp gmp-6.1.1 tar.xz
-#     make install
-#   fi
-#   if [ ! -f ${SYSPREFIX_DIR}/bin/nettle-hash ]; then
-#     build_for_osx http://ftp.gnu.org/gnu/nettle nettle-3.3 tar.gz
-#     make install
-#   fi
-#   if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then
-#     build_for_osx http://ftp.gnu.org/gnu/gnutls gnutls-2.12.21 tar.bz2
-#     make install
-#   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/wget ]; then
     build_for_osx http://ftp.gnu.org/gnu/wget wget-1.18 tar.xz --with-ssl=openssl
     make install
@@ -105,6 +97,10 @@ if [ -d /System/Library ]; then
     build_for_osx http://ftp.gnu.org/gnu/help2man help2man-1.47.4 tar.xz
     make install
   fi
+
+  unset CFLAGS
+  unset CXXFLAGS
+  unset LDFLAG
 fi
 
 #######################################################################################################################
