@@ -101,6 +101,10 @@ if [ -d /System/Library ]; then
     build_for_osx http://ftp.gnu.org/gnu/wget wget-1.18 tar.xz --with-ssl=openssl
     make install
   fi
+  if [ ! -f ${SYSPREFIX_DIR}/bin/help2man ]; then
+    build_for_osx http://ftp.gnu.org/gnu/help2man help2man-1.47.4 tar.xz
+    make install
+  fi
 fi
 
 #######################################################################################################################
