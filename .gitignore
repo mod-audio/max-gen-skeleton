@@ -1,0 +1,8 @@
+*.d
+*.o
+*.so
+bin/*
+plugin/gen_exported.cpp
+plugin/gen_exported.h
+source/.plugin-info
+source/DistrhoPluginInfo.h
