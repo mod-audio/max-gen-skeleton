@@ -9,12 +9,21 @@ fi
 
 set -e
 
-NAME="testname1"
-URI="urn:maxgen:testplugin1"
-ID1="x"
-ID2="y"
-NUMINS="0"
-NUMOUTS="0"
+echo "Please type your plugin name, then press enter to confirm"
+read NAME
+
+if [ "${NAME}"x == ""x ]; then
+  echo "Empty plugin name, cannot continue"
+  exit 1
+fi
+
+SYMBOL=$(echo ${NAME} | sed -e "s/[^A-Za-z0-9._-]/_/g")
+
+URI="urn:maxgen:${SYMBOL}"
+ID1=$(echo ${SYMBOL} | cut -c 1)
+ID2=$(echo ${SYMBOL} | rev | cut -c 1)
+NUMINS=$(cat plugin/gen_exported.cpp | awk 'sub("gen_kernel_numins = ","")' | rev | cut -c 2)
+NUMOUTS=$(cat plugin/gen_exported.cpp | awk 'sub("gen_kernel_numouts = ","")' | rev | cut -c 2)
 
 cp source/DistrhoPluginInfo.h.in source/DistrhoPluginInfo.h
 echo "NAME = ${NAME}" > source/.plugin-info
