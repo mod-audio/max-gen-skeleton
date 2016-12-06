@@ -8,7 +8,7 @@ But it's also possible to be used manually.
 Just follow these steps:
 * Copy gen_exported.cpp and gen_exported.h into the plugin folder
 * Run ./setup.sh and enter the desired plugin name
-* Compile by plugin using 'make'
+* Compile the plugin using 'make'
 
 By default you get a LV2 and VST2.4 plugin.<br/>
 If you have Linux and JACK installed, you'll get a JACK standalone too.
