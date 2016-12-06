@@ -14,10 +14,10 @@ CXX ?= g++
 ifneq ($(HAIKU),true)
 ifneq ($(MACOS),true)
 ifneq ($(WIN32),true)
-ifeq (,$(wildcard /System/Library))
-LINUX=true
-else
+ifneq (,$(wildcard /System/Library))
 MACOS=true
+else
+LINUX=true
 endif
 endif
 endif
