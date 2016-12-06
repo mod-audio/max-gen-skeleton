@@ -59,33 +59,23 @@ if [ -d /System/Library ]; then
     build_for_osx http://ftp.gnu.org/gnu/sed sed-4.2.1 tar.bz2
     make install
   fi
+  if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then # TODO
+    build_for_osx http://ftp.gnu.org/gnu/coreutils coreutils-7.4 tar.gz
+    make install
+  fi
+  if [ ! -f ${SYSPREFIX_DIR}/bin/sed ]; then # TODO
+    build_for_osx http://ftp.gnu.org/gnu/libtool libtool-2.2.6a tar.gz
+    make install
+  fi
+  if [ ! -f ${SYSPREFIX_DIR}/bin/gawk ]; then
+    build_for_osx http://ftp.gnu.org/gnu/gawk gawk-3.1.7 tar.bz2
+    make install
+  fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/objdump ]; then
     build_for_osx http://ftp.gnu.org/gnu/binutils binutils-2.19.1 tar.bz2
     cp binutils/obj{dump,copy} /usr/local/bin
   fi
 fi
-
-#     58     curl -O http://ftp.gnu.org/gnu/coreutils/coreutils-7.4.tar.gz
-#     59     tar -xf coreutils-7.4.tar.gz
-#     60     cd coreutils-7.4
-#     61     ./configure --prefix=/usr/local
-#     62     make -j 2
-#     63     sudo make install
-#
-#     67     curl -O http://ftp.gnu.org/gnu/libtool/libtool-2.2.6a.tar.gz
-#     68     tar -xf libtool-2.2.6a.tar.gz
-#     69     cd libtool-2.2.6
-#     70     ./configure --prefix=/usr/local
-#     71     make -j 2
-#     72     sudo make install
-#
-#     76     curl -O http://ftp.gnu.org/gnu/gawk/gawk-3.1.7.tar.bz2
-#     77     tar -xf gawk-3.1.7.tar.bz2
-#     78     cd gawk-3.1.7
-#     79     ./configure --prefix=/usr/local
-#     80     make -j 2
-#     81     sudo make install
-#     82
 
 #######################################################################################################################
 # download and extract crosstool-ng
