@@ -84,6 +84,10 @@ if [ -d /System/Library ]; then
     cp binutils/obj{dump,copy} binutils/readelf ${SYSPREFIX_DIR}/bin/
   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then
+    build_for_osx http://ftp.gnu.org/gnu/nettle nettle-3.3 tar.gz
+    make install
+  fi
+  if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then
     build_for_osx http://ftp.gnu.org/gnu/gnutls gnutls-3.1.5 tar.xz
     make install
   fi
