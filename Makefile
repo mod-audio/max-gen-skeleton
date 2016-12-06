@@ -14,7 +14,16 @@ ifeq (,$(wildcard source/.plugin-info))
 $(error "Please run setup.sh before trying to build this repository")
 endif
 
-include source/Makefile.mk
+# --------------------------------------------------------------
+# Check if using MAC OS
+
+ifneq ($(HAIKU),true)
+ifneq ($(WIN32),true)
+ifneq (,$(wildcard /System/Library))
+MACOS=true
+endif
+endif
+endif
 
 # --------------------------------------------------------------
 
