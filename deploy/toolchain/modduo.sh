@@ -84,7 +84,7 @@ if [ -d /System/Library ]; then
     build_for_osx http://ftp.gnu.org/gnu/binutils binutils-2.26.1 tar.bz2
     cp binutils/obj{dump,copy} binutils/readelf ${SYSPREFIX_DIR}/bin/
   fi
-  if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then
+  if [ ! -f ${SYSPREFIX_DIR}/include/gmp ]; then
     build_for_osx http://ftp.gnu.org/gnu/gmp gmp-6.1.1 tar.xz
     make install
   fi
@@ -93,7 +93,7 @@ if [ -d /System/Library ]; then
     make install
   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then
-    build_for_osx http://ftp.gnu.org/gnu/gnutls gnutls-3.1.5 tar.xz
+    build_for_osx http://ftp.gnu.org/gnu/gnutls gnutls-3.0.26 tar.xz
     make install
   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/wget ]; then
