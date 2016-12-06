@@ -22,7 +22,7 @@ CT_NG_FILE=${CT_NG_VERSION}.tar.bz2
 #######################################################################################################################
 # setup directories
 
-SOURCE_DIR=$(readlink -f $(dirname $0))
+SOURCE_DIR=$(cd "$(dirname "$0")"; pwd)
 BUILD_DIR=${SOURCE_DIR}/build
 DOWNLOAD_DIR=${SOURCE_DIR}/download
 TOOLCHAIN_DIR=${SOURCE_DIR}/toolchain

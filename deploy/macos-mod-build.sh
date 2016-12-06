@@ -6,7 +6,7 @@ OPTS_AGGRESSIVE="$OPTS_BASE -ffast-math -fno-finite-math-only -fprefetch-loop-ar
 
 export PATH=$(dirname $0)/toolchain/toolchain:$PATH
 
-export AR=$BASENAME-gcc
+export AR=$BASENAME-gcc-ar
 export CC=$BASENAME-gcc
 export CPP=$BASENAME-cpp
 export CXX=$BASENAME-g++
