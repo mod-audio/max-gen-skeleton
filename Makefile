@@ -14,6 +14,8 @@ ifeq (,$(wildcard source/.plugin-info))
 $(error "Please run setup.sh before trying to build this repository")
 endif
 
+include source/Makefile.mk
+
 # --------------------------------------------------------------
 
 all: plugin gen

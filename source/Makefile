@@ -9,12 +9,16 @@ CC  ?= gcc
 CXX ?= g++
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Fallback to Linux if no other OS defined
+# Set OS
 
 ifneq ($(HAIKU),true)
 ifneq ($(MACOS),true)
 ifneq ($(WIN32),true)
+ifeq (,$(wildcard /System/Library))
 LINUX=true
+else
+MACOS=true
+endif
 endif
 endif
 endif
