@@ -67,11 +67,11 @@ if [ -d /System/Library ]; then
     build_for_osx http://ftp.gnu.org/gnu/sed sed-4.2.2 tar.bz2
     make install
   fi
-  if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then # TODO
-    build_for_osx http://ftp.gnu.org/gnu/coreutils coreutils-7.6 tar.gz
+  if [ ! -f ${SYSPREFIX_DIR}/bin/whoami ]; then
+    build_for_osx http://ftp.gnu.org/gnu/coreutils coreutils-8.26 tar.xz
     make install
   fi
-  if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then # TODO
+  if [ ! -f ${SYSPREFIX_DIR}/bin/libtool ]; then
     build_for_osx http://ftp.gnu.org/gnu/libtool libtool-2.2.10 tar.gz
     make install
   fi
@@ -80,8 +80,12 @@ if [ -d /System/Library ]; then
     make install
   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/objdump ]; then
-    build_for_osx http://ftp.gnu.org/gnu/binutils binutils-2.19.1 tar.bz2
-    cp binutils/obj{dump,copy} /usr/local/bin
+    build_for_osx http://ftp.gnu.org/gnu/binutils binutils-2.26.1 tar.bz2
+    cp binutils/obj{dump,copy} binutils/readelf ${SYSPREFIX_DIR}/bin/
+  fi
+  if [ ! -f ${SYSPREFIX_DIR}/bin/wget ]; then
+    build_for_osx http://ftp.gnu.org/gnu/wget wget-1.18 tar.xz
+    make install
   fi
 fi
 
