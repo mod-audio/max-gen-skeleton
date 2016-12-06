@@ -53,7 +53,7 @@ function build_for_osx {
   cd ${BUILD_DIR}/${NAME}
 
   if [ ! -f .stamp_configured ]; then
-    ./configure --prefix=${SYSPREFIX_DIR}
+    ./configure --prefix=${SYSPREFIX_DIR} --without-p11-kit
     touch .stamp_configured
   fi
 
@@ -93,7 +93,7 @@ if [ -d /System/Library ]; then
     make install
   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then
-    build_for_osx http://ftp.gnu.org/gnu/gnutls gnutls-3.0.26 tar.xz
+    build_for_osx http://ftp.gnu.org/gnu/gnutls gnutls-2.12.21 tar.bz2
     make install
   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/wget ]; then
