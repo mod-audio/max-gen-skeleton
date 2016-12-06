@@ -41,13 +41,21 @@ function build_for_osx {
   NAME=$2
   EXT=$3
 
-  download ${URL}/${NAME}.${EXT} ${DOWNLOAD_DIR}/${NAME}.${EXT}
-
-  mkdir -p ${BUILD_DIR}/${NAME}
-  tar xf ${DOWNLOAD_DIR}/${NAME}.${EXT} -C ${BUILD_DIR}/${NAME} --strip-components=1
+  if [ ! -d ${DOWNLOAD_DIR}/${NAME}.${EXT} ]; then
+    if [ ! -f ${DOWNLOAD_DIR}/${NAME}.${EXT} ]; then
+      download ${URL}/${NAME}.${EXT} ${DOWNLOAD_DIR}/${NAME}.${EXT}
+    fi
+    mkdir -p ${BUILD_DIR}/${NAME}
+    tar xf ${DOWNLOAD_DIR}/${NAME}.${EXT} -C ${BUILD_DIR}/${NAME} --strip-components=1
+  fi
 
   cd ${BUILD_DIR}/${NAME}
-  ./configure --prefix=${SYSPREFIX_DIR}
+
+  if [ ! -f .stamp_configured ]; then
+    ./configure --prefix=${SYSPREFIX_DIR}
+    touch .stamp_configured
+  fi
+
   make
 }
 
@@ -56,19 +64,19 @@ function build_for_osx {
 
 if [ -d /System/Library ]; then
   if [ ! -f ${SYSPREFIX_DIR}/bin/sed ]; then
-    build_for_osx http://ftp.gnu.org/gnu/sed sed-4.2.1 tar.bz2
+    build_for_osx http://ftp.gnu.org/gnu/sed sed-4.2.2 tar.bz2
     make install
   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then # TODO
-    build_for_osx http://ftp.gnu.org/gnu/coreutils coreutils-7.4 tar.gz
+    build_for_osx http://ftp.gnu.org/gnu/coreutils coreutils-7.6 tar.gz
     make install
   fi
-  if [ ! -f ${SYSPREFIX_DIR}/bin/sed ]; then # TODO
-    build_for_osx http://ftp.gnu.org/gnu/libtool libtool-2.2.6a tar.gz
+  if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then # TODO
+    build_for_osx http://ftp.gnu.org/gnu/libtool libtool-2.2.10 tar.gz
     make install
   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/gawk ]; then
-    build_for_osx http://ftp.gnu.org/gnu/gawk gawk-3.1.7 tar.bz2
+    build_for_osx http://ftp.gnu.org/gnu/gawk gawk-3.1.8 tar.bz2
     make install
   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/objdump ]; then
