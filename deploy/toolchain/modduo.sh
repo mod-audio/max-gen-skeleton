@@ -46,7 +46,7 @@ function build_for_osx {
   mkdir -p ${BUILD_DIR}/${NAME}
   tar xf ${DOWNLOAD_DIR}/${NAME}.${EXT} -C ${BUILD_DIR}/${NAME} --strip-components=1
 
-  cd ${BUILD_DIR}/${CT_NG_VERSION}
+  cd ${BUILD_DIR}/${NAME}
   ./configure --prefix=${SYSPREFIX_DIR}
   make
   make install
