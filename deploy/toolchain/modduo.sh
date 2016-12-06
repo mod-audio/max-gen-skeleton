@@ -41,6 +41,7 @@ function build_for_osx {
   URL=$1
   NAME=$2
   EXT=$3
+  OPTS=$4
 
   if [ ! -d ${DOWNLOAD_DIR}/${NAME}.${EXT} ]; then
     if [ ! -f ${DOWNLOAD_DIR}/${NAME}.${EXT} ]; then
@@ -53,7 +54,7 @@ function build_for_osx {
   cd ${BUILD_DIR}/${NAME}
 
   if [ ! -f .stamp_configured ]; then
-    ./configure --prefix=${SYSPREFIX_DIR} --without-p11-kit
+    ./configure --prefix=${SYSPREFIX_DIR} $OPTS
     touch .stamp_configured
   fi
 
@@ -84,20 +85,20 @@ if [ -d /System/Library ]; then
     build_for_osx http://ftp.gnu.org/gnu/binutils binutils-2.26.1 tar.bz2
     cp binutils/obj{dump,copy} binutils/readelf ${SYSPREFIX_DIR}/bin/
   fi
-  if [ ! -f ${SYSPREFIX_DIR}/include/gmp.h ]; then
-    build_for_osx http://ftp.gnu.org/gnu/gmp gmp-6.1.1 tar.xz
-    make install
-  fi
-  if [ ! -f ${SYSPREFIX_DIR}/bin/nettle-hash ]; then
-    build_for_osx http://ftp.gnu.org/gnu/nettle nettle-3.3 tar.gz
-    make install
-  fi
-  if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then
-    build_for_osx http://ftp.gnu.org/gnu/gnutls gnutls-2.12.21 tar.bz2
-    make install
-  fi
+#   if [ ! -f ${SYSPREFIX_DIR}/include/gmp.h ]; then
+#     build_for_osx http://ftp.gnu.org/gnu/gmp gmp-6.1.1 tar.xz
+#     make install
+#   fi
+#   if [ ! -f ${SYSPREFIX_DIR}/bin/nettle-hash ]; then
+#     build_for_osx http://ftp.gnu.org/gnu/nettle nettle-3.3 tar.gz
+#     make install
+#   fi
+#   if [ ! -f ${SYSPREFIX_DIR}/bin/TODO ]; then
+#     build_for_osx http://ftp.gnu.org/gnu/gnutls gnutls-2.12.21 tar.bz2
+#     make install
+#   fi
   if [ ! -f ${SYSPREFIX_DIR}/bin/wget ]; then
-    build_for_osx http://ftp.gnu.org/gnu/wget wget-1.18 tar.xz
+    build_for_osx http://ftp.gnu.org/gnu/wget wget-1.18 tar.xz --with-ssl=openssl
     make install
   fi
 fi
