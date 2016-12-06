@@ -49,7 +49,6 @@ function build_for_osx {
   cd ${BUILD_DIR}/${NAME}
   ./configure --prefix=${SYSPREFIX_DIR}
   make
-  make install
 }
 
 #######################################################################################################################
@@ -58,6 +57,11 @@ function build_for_osx {
 if [ -d /System/Library ]; then
   if [ ! -f ${SYSPREFIX_DIR}/bin/sed ]; then
     build_for_osx http://ftp.gnu.org/gnu/sed sed-4.2.1 tar.bz2
+    make install
+  fi
+  if [ ! -f ${SYSPREFIX_DIR}/bin/objdump ]; then
+    build_for_osx http://ftp.gnu.org/gnu/binutils binutils-2.19.1 tar.bz2
+    cp binutils/obj{dump,copy} /usr/local/bin
   fi
 fi
 
@@ -82,13 +86,6 @@ fi
 #     80     make -j 2
 #     81     sudo make install
 #     82
-#
-#     88     curl -O http://ftp.gnu.org/gnu/binutils/binutils-2.19.1.tar.bz2
-#     89     tar -xf binutils-2.19.1.tar.bz2
-#     90     cd binutils-2.19.1
-#     91     ./configure --prefix=/usr/local
-#     92     make -j 2
-#     93     sudo cp binutils/obj{dump,copy} /usr/local/bin
 
 #######################################################################################################################
 # download and extract crosstool-ng
