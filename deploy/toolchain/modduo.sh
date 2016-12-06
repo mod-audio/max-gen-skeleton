@@ -84,7 +84,7 @@ if [ -d /System/Library ]; then
     build_for_osx http://ftp.gnu.org/gnu/binutils binutils-2.26.1 tar.bz2
     cp binutils/obj{dump,copy} binutils/readelf ${SYSPREFIX_DIR}/bin/
   fi
-  if [ ! -f ${SYSPREFIX_DIR}/include/gmp ]; then
+  if [ ! -f ${SYSPREFIX_DIR}/include/gmp.h ]; then
     build_for_osx http://ftp.gnu.org/gnu/gmp gmp-6.1.1 tar.xz
     make install
   fi
