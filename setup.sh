@@ -28,9 +28,9 @@ NUMOUTS=$(cat plugin/gen_exported.cpp | awk 'sub("gen_kernel_numouts = ","")' | 
 cp source/DistrhoPluginInfo.h.in source/DistrhoPluginInfo.h
 echo "NAME = ${NAME}" > source/.plugin-info
 
-sed -i "s|@NAME@|${NAME}|" source/DistrhoPluginInfo.h
-sed -i "s|@URI@|${URI}|" source/DistrhoPluginInfo.h
-sed -i "s|@ID1@|${ID1}|" source/DistrhoPluginInfo.h
-sed -i "s|@ID2@|${ID2}|" source/DistrhoPluginInfo.h
-sed -i "s|@NUMINS@|${NUMINS}|" source/DistrhoPluginInfo.h
-sed -i "s|@NUMOUTS@|${NUMOUTS}|" source/DistrhoPluginInfo.h
+sed -i -e "s|@NAME@|${NAME}|" source/DistrhoPluginInfo.h
+sed -i -e "s|@URI@|${URI}|" source/DistrhoPluginInfo.h
+sed -i -e "s|@ID1@|${ID1}|" source/DistrhoPluginInfo.h
+sed -i -e "s|@ID2@|${ID2}|" source/DistrhoPluginInfo.h
+sed -i -e "s|@NUMINS@|${NUMINS}|" source/DistrhoPluginInfo.h
+sed -i -e "s|@NUMOUTS@|${NUMOUTS}|" source/DistrhoPluginInfo.h
