@@ -4,6 +4,18 @@
 # Created by falkTX
 #
 
+# --------------------------------------------------------------
+
+ifeq (,$(wildcard plugin/gen_exported.cpp))
+$(error "Please copy gen_exported.cpp and gen_exported.h to the plugin folder")
+endif
+
+ifeq (,$(wildcard source/.plugin-info))
+$(error "Please run setup.sh before trying to build this repository")
+endif
+
+# --------------------------------------------------------------
+
 all: plugin gen
 
 # --------------------------------------------------------------
