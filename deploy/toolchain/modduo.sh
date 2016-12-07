@@ -98,6 +98,8 @@ if [ -d /System/Library ]; then
     make install
   fi
 
+  rm -f ${SYSPREFIX_DIR}/bin/stat
+
   unset CFLAGS
   unset CXXFLAGS
   unset LDFLAG
@@ -124,6 +126,7 @@ if [ ! -f .config ]; then
   cp ${SOURCE_DIR}/modduo.config .config
   sed -i -e "s|CT_LOCAL_TARBALLS_DIR=.*|CT_LOCAL_TARBALLS_DIR=\"${DOWNLOAD_DIR}\"|" .config
   sed -i -e "s|CT_PREFIX_DIR=.*|CT_PREFIX_DIR=\"${TOOLCHAIN_DIR}\"|" .config
+  patch -p1 -i ${SOURCE_DIR}/patches/b0743fdcda5e203c5b379d6b78a8adb74c4084ff.patch
 fi
 
 if [ ! -f .stamp_configured ]; then
