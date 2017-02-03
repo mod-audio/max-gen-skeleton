@@ -26,7 +26,7 @@ NUMINS=$(cat plugin/gen_exported.cpp | awk 'sub("gen_kernel_numins = ","")' | re
 NUMOUTS=$(cat plugin/gen_exported.cpp | awk 'sub("gen_kernel_numouts = ","")' | rev | cut -c 2)
 
 cp source/DistrhoPluginInfo.h.in source/DistrhoPluginInfo.h
-echo "NAME = ${NAME}" > source/.plugin-info
+echo "NAME = ${SYMBOL}" > source/.plugin-info
 
 sed -i -e "s|@NAME@|${NAME}|" source/DistrhoPluginInfo.h
 sed -i -e "s|@URI@|${URI}|" source/DistrhoPluginInfo.h

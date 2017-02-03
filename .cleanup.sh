@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd $(dirname $0)
+
 touch source/.plugin-info
 make clean
 
