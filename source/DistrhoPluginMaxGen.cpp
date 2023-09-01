@@ -1,6 +1,6 @@
 /*
- * DPF Max Gen Skeleton
- * Copyright (C) 2015-2016 Filipe Coelho <falktx@falktx.com>
+ * DPF Max Gen
+ * Copyright (C) 2015-2023 Filipe Coelho <falktx@falktx.com>
  *
  * Permission to use, copy, modify, and/or distribute this software for any purpose with
  * or without fee is hereby granted, provided that the above copyright notice and this
@@ -43,15 +43,13 @@ void DistrhoPluginMaxGen::initParameter(uint32_t index, Parameter& parameter)
 {
     ParamInfo& info(fGenState->params[index]);
 
-    parameter.hints      = kParameterIsAutomable;
+    parameter.hints      = kParameterIsAutomatable;
     parameter.name       = info.name;
     parameter.symbol     = info.name;
     parameter.unit       = info.units;
     parameter.ranges.def = info.defaultvalue;
     parameter.ranges.min = info.outputmin;
     parameter.ranges.max = info.outputmax;
-
-    parameter.symbol.toBasic();
 }
 
 // -----------------------------------------------------------------------
@@ -74,7 +72,7 @@ void DistrhoPluginMaxGen::setParameterValue(uint32_t index, float value)
 
 void DistrhoPluginMaxGen::run(const float** inputs, float** outputs, uint32_t frames)
 {
-    gen::perform(fGenState, (float**)inputs, DISTRHO_PLUGIN_NUM_INPUTS, outputs, DISTRHO_PLUGIN_NUM_OUTPUTS, frames);
+    gen::perform(fGenState, (float**)inputs, gen::gen_kernel_numins, outputs, gen::gen_kernel_numouts, frames);
 }
 
 // -----------------------------------------------------------------------

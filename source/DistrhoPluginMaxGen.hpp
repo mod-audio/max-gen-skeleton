@@ -1,6 +1,6 @@
 /*
- * DPF Max Gen Skeleton
- * Copyright (C) 2015-2016 Filipe Coelho <falktx@falktx.com>
+ * DPF Max Gen
+ * Copyright (C) 2015-2022 Filipe Coelho <falktx@falktx.com>
  *
  * Permission to use, copy, modify, and/or distribute this software for any purpose with
  * or without fee is hereby granted, provided that the above copyright notice and this
@@ -41,17 +41,22 @@ protected:
 
     const char* getDescription() const noexcept override
     {
-        return "This plugin was automatically generated, based on a Max gen~ project file.";
+        return DISTRHO_PLUGIN_DESCRIPTION;
+    }
+
+    int64_t getUniqueId() const noexcept override
+    {
+        return DISTRHO_PLUGIN_VERSION;
     }
 
     const char* getMaker() const noexcept override
     {
-        return "MOD Devices and Cycling '74";
+        return "DISTRHO";
     }
 
     const char* getHomePage() const noexcept override
     {
-        return "https://github.com/moddevices/max-gen-skeleton";
+        return "https://github.com/DISTRHO/DPF-Max-Gen";
     }
 
     const char* getLicense() const noexcept override
@@ -61,12 +66,7 @@ protected:
 
     uint32_t getVersion() const noexcept override
     {
-        return d_version(0, 0, 0);
-    }
-
-    int64_t getUniqueId() const noexcept override
-    {
-        return d_cconst('~', '/', DISTRHO_PLUGIN_ID1, DISTRHO_PLUGIN_ID2);
+        return d_version(0, 1, 0);
     }
 
     // -------------------------------------------------------------------

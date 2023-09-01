@@ -4,7 +4,9 @@
 # Created by falkTX
 #
 
-# --------------------------------------------------------------
+include source/dpf/Makefile.base.mk
+
+# ---------------------------------------------------------------------------------------------------------------------
 
 ifeq (,$(wildcard plugin/gen_exported.cpp))
 $(error "Please copy gen_exported.cpp and gen_exported.h to the plugin folder")
@@ -14,41 +16,27 @@ ifeq (,$(wildcard source/.plugin-info))
 $(error "Please run setup.sh before trying to build this repository")
 endif
 
-# --------------------------------------------------------------
-# Check if using MAC OS
-
-ifneq ($(HAIKU),true)
-ifneq ($(WIN32),true)
-ifneq (,$(wildcard /System/Library))
-MACOS=true
-endif
-endif
-endif
-
-# --------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
 all: plugin gen
 
-# --------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
 plugin:
 	$(MAKE) all -C source
 
 gen: plugin source/dpf/utils/lv2_ttl_generator
 	@$(CURDIR)/source/dpf/utils/generate-ttl.sh
-ifeq ($(MACOS),true)
-	@$(CURDIR)/source/dpf/utils/generate-vst-bundles.sh
-endif
 
 source/dpf/utils/lv2_ttl_generator:
 	$(MAKE) -C source/dpf/utils/lv2-ttl-generator
 
-# --------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
 clean:
 	$(MAKE) clean -C source
 	$(MAKE) clean -C source/dpf/utils/lv2-ttl-generator
 
-# --------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
 .PHONY: plugin
