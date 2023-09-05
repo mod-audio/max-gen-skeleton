@@ -1,6 +1,6 @@
 /*
  * DPF Max Gen Skeleton
- * Copyright (C) 2015-2016 Filipe Coelho <falktx@falktx.com>
+ * Copyright (C) 2015-2023 Filipe Coelho <falktx@falktx.com>
  *
  * Permission to use, copy, modify, and/or distribute this software for any purpose with
  * or without fee is hereby granted, provided that the above copyright notice and this
@@ -17,18 +17,18 @@
 #ifndef DISTRHO_PLUGIN_INFO_H_INCLUDED
 #define DISTRHO_PLUGIN_INFO_H_INCLUDED
 
-#define DISTRHO_PLUGIN_BRAND       "Max gen~"
-#define DISTRHO_PLUGIN_HAS_UI      0
-#define DISTRHO_PLUGIN_IS_RT_SAFE  0
+#define DISTRHO_PLUGIN_NAME  "@NAME@"
+#define DISTRHO_PLUGIN_BRAND "@BRAND@"
+#define DISTRHO_PLUGIN_URI   "@URI@"
+#define DISTRHO_PLUGIN_ID1   '@ID1@'
+#define DISTRHO_PLUGIN_ID2   '@ID2@'
 
-#define DISTRHO_PLUGIN_NAME        "@NAME@"
-#define DISTRHO_PLUGIN_URI         "@URI@"
-#define DISTRHO_PLUGIN_ID1         '@ID1@'
-#define DISTRHO_PLUGIN_ID2         '@ID2@'
+#define DISTRHO_PLUGIN_HAS_UI      0
+#define DISTRHO_PLUGIN_IS_RT_SAFE  1
 #define DISTRHO_PLUGIN_NUM_INPUTS  @NUMINS@
 #define DISTRHO_PLUGIN_NUM_OUTPUTS @NUMOUTS@
 
-#define DISTRHO_PLUGIN_DESCRIPTION ""
-#define DISTRHO_PLUGIN_VERSION 0
+#define DISTRHO_PLUGIN_DESCRIPTION  "@DESCRIPTION@"
+#define DISTRHO_PLUGIN_LV2_CATEGORY "@LV2_CATEGORY@"
 
 #endif // DISTRHO_PLUGIN_INFO_H_INCLUDED

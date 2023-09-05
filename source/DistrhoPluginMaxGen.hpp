@@ -1,6 +1,6 @@
 /*
  * DPF Max Gen
- * Copyright (C) 2015-2022 Filipe Coelho <falktx@falktx.com>
+ * Copyright (C) 2015-2023 Filipe Coelho <falktx@falktx.com>
  *
  * Permission to use, copy, modify, and/or distribute this software for any purpose with
  * or without fee is hereby granted, provided that the above copyright notice and this
@@ -46,17 +46,17 @@ protected:
 
     int64_t getUniqueId() const noexcept override
     {
-        return DISTRHO_PLUGIN_VERSION;
+        return d_cconst('M', 'G', DISTRHO_PLUGIN_ID1, DISTRHO_PLUGIN_ID2);
     }
 
     const char* getMaker() const noexcept override
     {
-        return "DISTRHO";
+        return DISTRHO_PLUGIN_BRAND;
     }
 
     const char* getHomePage() const noexcept override
     {
-        return "https://github.com/DISTRHO/DPF-Max-Gen";
+        return "https://github.com/moddevices/max-gen-skeleton";
     }
 
     const char* getLicense() const noexcept override
@@ -66,7 +66,7 @@ protected:
 
     uint32_t getVersion() const noexcept override
     {
-        return d_version(0, 1, 0);
+        return d_version(0, 0, 0);
     }
 
     // -------------------------------------------------------------------
@@ -88,7 +88,7 @@ protected:
     // -------------------------------------------------------------------
 
 private:
-    CommonState* fGenState;
+    CommonState* const fGenState;
 
     DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DistrhoPluginMaxGen)
 };
